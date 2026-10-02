@@ -29,7 +29,7 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends Activity {
-    // Ora X 11.0 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅
+    // Ora X 11.1 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅
     private static final int REQ_NOTIFICATIONS = 701;
     private static final int REQ_SAVE = 702;
     private static final int REQ_PICK = 703;
@@ -273,7 +273,7 @@ public class MainActivity extends Activity {
                         ? pm.getPackageInfo(pkg, PackageManager.PackageInfoFlags.of(0))
                         : pm.getPackageInfo(pkg, 0)).versionName;
             }
-            catch (Exception e) { return "11.0"; }
+            catch (Exception e) { return "11.1"; }
         }
 
         @JavascriptInterface public void saveFile(String name, String text, String mime) {

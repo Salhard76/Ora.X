@@ -1,6 +1,6 @@
-/* Ora X 11.0 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅 */
-const CACHE = "orax-11.0";
-const FILES = ["./", "./index.html", "./style-11-0.css", "./app-11-0.js", "./manifest-11-0.json", "./icon-192.png", "./icon-512.png", "./icon-192-maskable.png", "./icon-512-maskable.png"];
+/* Ora X 11.1 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅 */
+const CACHE = "orax-11.1";
+const FILES = ["./", "./index.html", "./style-11-1.css", "./app-11-1.js", "./manifest-11-1.json", "./icon-192.png", "./icon-512.png", "./icon-192-maskable.png", "./icon-512-maskable.png"];
 
 self.addEventListener("install", event => {
   event.waitUntil(

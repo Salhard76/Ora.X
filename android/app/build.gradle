@@ -1,5 +1,10 @@
-// Ora X 11.0 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅
+// Ora X 11.1 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅
 plugins { id 'com.android.application' }
+
+// Firma fissa: ogni build (debug e release, su qualunque PC) usa la stessa chiave, cosi' l'APK
+// si installa SOPRA la versione precedente senza disinstallare. Conservare orax-signing.p12:
+// con un'altra chiave Android rifiuta l'aggiornamento. Non pubblicare questo file in un repository pubblico.
+def oraxKeystore = rootProject.file('orax-signing.p12')
 
 android {
     namespace 'com.orax.app'
@@ -16,13 +21,35 @@ android {
         targetSdk 35
         def versionFile = rootProject.file('../version.txt')
         // Difensivo: toglie BOM/spazi e qualsiasi suffisso non numerico; se resta vuoto/malformato usa il fallback.
-        def appVersion = (versionFile.exists() ? versionFile.text.replace('\uFEFF', '').trim() : '11.0').replaceAll(/[^0-9.].*$/, '')
-        if (!(appVersion ==~ /^\d+(\.\d+){0,2}$/)) appVersion = '11.0'
+        def appVersion = (versionFile.exists() ? versionFile.text.replace('\uFEFF', '').trim() : '11.1').replaceAll(/[^0-9.].*$/, '')
+        if (!(appVersion ==~ /^\d+(\.\d+){0,2}$/)) appVersion = '11.1'
         def versionParts = appVersion.tokenize('.').collect { it.toInteger() }
         def versionCodeValue = versionParts[0] * 10000 + (versionParts.size() > 1 ? versionParts[1] * 100 : 0) + (versionParts.size() > 2 ? versionParts[2] : 0)
 
         versionCode versionCodeValue
         versionName appVersion
+    }
+
+    signingConfigs {
+        orax {
+            if (oraxKeystore.exists()) {
+                storeFile oraxKeystore
+                storeType 'pkcs12'
+                storePassword 'OraX-SalHard'
+                keyAlias 'orax'
+                keyPassword 'OraX-SalHard'
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            if (oraxKeystore.exists()) signingConfig signingConfigs.orax
+        }
+        release {
+            if (oraxKeystore.exists()) signingConfig signingConfigs.orax
+            minifyEnabled false
+        }
     }
 
     lint {

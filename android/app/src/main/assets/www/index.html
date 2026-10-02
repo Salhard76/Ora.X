@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Ora X 11.0 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅 -->
+<!-- Ora X 11.1 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅 -->
 <html lang="it">
 <head>
   <meta charset="utf-8">
@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Ora X: calcolo rapido di entrata, uscita e mensa.">
   <title>Ora X</title>
-  <link rel="manifest" href="manifest-11-0.json">
-  <link rel="icon" href="icon-192.png?v=11.0" type="image/png">
-  <link rel="apple-touch-icon" href="icon-192.png?v=11.0">
-  <link rel="stylesheet" href="style-11-0.css">
+  <link rel="manifest" href="manifest-11-1.json">
+  <link rel="icon" href="icon-192.png?v=11.1" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png?v=11.1">
+  <link rel="stylesheet" href="style-11-1.css">
 </head>
 <body>
 <svg style="display:none" aria-hidden="true">
@@ -71,7 +71,7 @@
   </section>
 
   <footer class="app-footer">
-    <span id="statoApp">Ora X · v11.0</span>
+    <span id="statoApp">Ora X · v11.1</span>
   </footer>
 </main>
 
@@ -109,33 +109,37 @@
         <span class="info-etichetta">Autore</span>
         <span class="info-firma">Sal Hard</span>
       </div>
-      <p class="info-versione">Versione <strong id="infoVersione">11.0</strong></p>
+      <p class="info-versione">Versione <strong id="infoVersione">11.1</strong></p>
 
       <h3>Cosa fa</h3>
       <p>Ora X calcola in un tocco l'orario di <b>Uscita</b> e di <b>Mensa</b> a partire dall'Entrata. Salva ogni giorno nello Storico mensile con il totale delle ore e il pasto, esporta e ripristina i backup e ti avvisa 5 minuti prima dell'uscita.</p>
 
       <h3>Novità</h3>
       <ul>
-        <li>Pulsante info con autore, versione e novità.</li>
-        <li>Avviso di uscita più visibile: la notifica rossa si legge anche espansa.</li>
-        <li>Icona aggiornata con la versione, adatta anche alle icone a tema di Android 13+.</li>
-        <li>Se l'app resta aperta oltre la mezzanotte, il giorno si aggiorna da solo.</li>
-        <li>Conferme del ripristino backup più chiare.</li>
-        <li>Ottimizzata per lo schermo del Samsung Galaxy A27 5G.</li>
+        <li>Storico: sono sempre visibili entrambe le uscite, con e senza mensa. Quella che non ti riguarda è attenuata e barrata.</li>
+        <li>APK con firma fissa e numero di versione crescente, per aggiornare senza disinstallare.</li>
       </ul>
 
       <h3>Correzioni</h3>
       <ul>
-        <li>Il tasto Indietro chiude lo Storico invece di uscire dall'app.</li>
-        <li>Ripristinato il funzionamento offline della versione web.</li>
-        <li>Icona e scritta della versione non più tagliate dalle maschere del telefono.</li>
-        <li>Sfondo uniforme sotto la barra di stato e di navigazione.</li>
-        <li>Orario della Mensa evidenziato quando il pasto è attivo.</li>
+        <li>Storico: senza mensa viene attenuata l'uscita con +20 minuti; con la mensa, quella senza, con il suo orario corretto.</li>
+        <li>Aggiornamento dell'APK sopra la versione precedente. La prima volta con la nuova firma serve ancora una reinstallazione.</li>
       </ul>
+
+      <details>
+        <summary>Versione 11.0</summary>
+        <ul>
+          <li>Pulsante info con autore, versione e novità.</li>
+          <li>Notifica rossa leggibile anche espansa; icona con la versione e icone a tema di Android 13+.</li>
+          <li>Il giorno si aggiorna da solo oltre la mezzanotte; conferme del ripristino backup più chiare.</li>
+          <li>Ottimizzata per il Samsung Galaxy A27 5G.</li>
+          <li>Corretti: tasto Indietro nello Storico, funzionamento offline, icona tagliata dalle maschere, sfondo sotto le barre di sistema.</li>
+        </ul>
+      </details>
     </div>
   </section>
 </div>
 
-<script src="app-11-0.js" defer></script>
+<script src="app-11-1.js" defer></script>
 </body>
 </html>

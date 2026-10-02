@@ -9,6 +9,10 @@ case "$VERSION" in ''|*[!0-9.]*|.*|*.|*..*) echo "ERRORE: version.txt non valido
 VF=$(printf '%s' "$VERSION" | tr . -)
 D=android/app/src/main/assets/www
 mkdir -p "$D"
+# Icone: la scritta "v<versione>" viene riscritta in tutte le icone (serve Pillow + numpy + font DejaVu Sans Mono Bold).
+if [ -f genera-icone.py ]; then
+  python3 genera-icone.py "$VERSION" || echo "AVVISO: icone non rigenerate" >&2
+fi
 python3 - "$VERSION" <<'PY'
 from pathlib import Path
 import json, re, sys
@@ -46,6 +50,7 @@ index=re.sub(r'app-[0-9-]+\.js', f'app-{vf}.js', index)
 index=re.sub(r'style-[0-9-]+\.css', f'style-{vf}.css', index)
 index=re.sub(r'manifest-[0-9-]+\.json', f'manifest-{vf}.json', index)
 index=re.sub(r'Ora X · v[0-9.]+', f'Ora X · v{v}', index)
+index=re.sub(r'(<strong id="infoVersione">)[0-9.]+(</strong>)', lambda m: m.group(1)+v+m.group(2), index)
 index=re.sub(r'(<!-- Ora X )\d+(?:\.\d+)*( · )', lambda m: m.group(1)+v+m.group(2), index)
 index=re.sub(r'(icon-192\.png\?v=)[0-9.]+', lambda m: m.group(1)+v, index)
 (root/'index.html').write_text(index, encoding='utf-8')
@@ -74,6 +79,9 @@ if GA.exists():
 wb=root/'android/app/src/main/res/drawable/window_bg.xml'
 if wb.exists():
     wb.write_text(re.sub(r'(Ora X )\d+(?:\.\d+)*( · )', lambda m: m.group(1)+v+m.group(2), wb.read_text(encoding='utf-8')), encoding='utf-8')
+readmes=sorted(root.glob('README-*.txt'))
+if len(readmes)==1 and readmes[0].name!=f'README-{v}.txt':
+    readmes[0]=readmes[0].rename(root/f'README-{v}.txt')
 for r in root.glob('README-*.txt'):
     t=r.read_text(encoding='utf-8')
     t=re.sub(r'^(Versione: )\d+(?:\.\d+)*', lambda m: m.group(1)+v, t, flags=re.M)
