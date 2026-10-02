@@ -1,5 +1,6 @@
 package com.orax.app;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -53,7 +54,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 .setCustomBigContentView(customBig);
 
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (nm != null && (Build.VERSION.SDK_INT < 33 || context.checkSelfPermission("android.permission.POST_NOTIFICATIONS") == android.content.pm.PackageManager.PERMISSION_GRANTED)) {
+        if (nm != null && (Build.VERSION.SDK_INT < 33 || context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == android.content.pm.PackageManager.PERMISSION_GRANTED)) {
             nm.notify(NOTIFICATION_ID, b.build());
         }
         context.getSharedPreferences(AlarmScheduler.PREFS, Context.MODE_PRIVATE).edit().clear().apply();

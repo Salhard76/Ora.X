@@ -33,6 +33,11 @@ Correzioni
 - Rollover di mezzanotte: se l'app resta aperta/in background, al rientro "oggi" si riallinea
   e il pulsante Adesso viene aggiornato.
 - Ripristino backup: testi delle conferme piu' chiari (Unisci / Sostituisci / Interrompi).
+- Pulsante info (icona i bianca in alto a destra): pannello con autore "Sal Hard", versione corrente
+  (letta da version.txt), breve descrizione, Novita' e Correzioni. Il tasto Indietro lo chiude.
+  Autore in Vivaldi se il dispositivo lo ha; altrimenti font incorporato Great Vibes (SIL OFL 1.1,
+  ridotto alle sole lettere necessarie, ~6 KB). Vivaldi e' un font Microsoft e non si puo' incorporare.
+  A ogni rilascio aggiornare a mano solo i testi Novita'/Correzioni nel blocco infoOverlay di index.html.
 - Commento contraddittorio sul padding in MainActivity corretto; getPackageInfo senza deprecazione
   su Android 13+.
 

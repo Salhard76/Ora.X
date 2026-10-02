@@ -8,6 +8,7 @@ const el = {
   avviso: $("avvisoCheck"), avvisoStato: $("avvisoStato"), reset: $("resetBtn"), storico: $("storicoBtn"),
   overlay: $("storicoOverlay"), close: $("storicoClose"), titolo: $("storicoTitolo"), totali: $("storicoTotali"), lista: $("storicoLista"),
   prev: $("mesePrev"), next: $("meseNext"), exportMese: $("storicoExport"), exportAll: $("storicoExportAll"),
+  info: $("infoBtn"), infoOverlay: $("infoOverlay"), infoClose: $("infoClose"), infoVersione: $("infoVersione"),
   backup: $("backupJsonBtn"), restore: $("importJsonBtn"), restoreInput: $("importJsonInput"), stato: $("statoApp")
 };
 
@@ -317,13 +318,31 @@ function closeHistory() {
   showHistory(false);
   try { if (history.state?.storico) history.back(); } catch {}
 }
-window.addEventListener("popstate", () => { if (el.overlay.classList.contains("aperto")) showHistory(false); });
-// Chiamata dall'app Android (MainActivity) a ogni Indietro: true = gestito (Storico chiuso), false = l'app puo' chiudersi.
+// --- pannello info (autore, versione, novita'): stessa gestione di cronologia dello Storico ---
+function showInfo(open) { el.infoOverlay.classList.toggle("aperto", open); el.infoOverlay.setAttribute("aria-hidden", open ? "false" : "true"); }
+function openInfo() {
+  el.infoVersione.textContent = APP_VERSION;
+  showInfo(true);
+  try { if (!history.state?.info) history.pushState({ info: 1 }, ""); } catch {}
+}
+function closeInfo() {
+  showInfo(false);
+  try { if (history.state?.info) history.back(); } catch {}
+}
+window.addEventListener("popstate", () => {
+  if (el.infoOverlay.classList.contains("aperto")) showInfo(false);
+  else if (el.overlay.classList.contains("aperto")) showHistory(false);
+});
+// Chiamata dall'app Android (MainActivity) a ogni Indietro: true = gestito (pannello chiuso), false = l'app puo' chiudersi.
 window.oraxBack = function () {
+  if (el.infoOverlay.classList.contains("aperto")) { closeInfo(); return true; }
   if (el.overlay.classList.contains("aperto")) { closeHistory(); return true; }
   return false;
 };
-try { if (history.state?.storico) history.replaceState(null, ""); } catch {} // app ripristinata con una voce "fantasma"
+el.info.addEventListener("click", openInfo);
+el.infoClose.addEventListener("click", closeInfo);
+el.infoOverlay.addEventListener("click", e => { if (e.target === el.infoOverlay) closeInfo(); });
+try { if (history.state?.storico || history.state?.info) history.replaceState(null, ""); } catch {} // app ripristinata con una voce "fantasma"
 el.storico.addEventListener("click", openHistory);
 el.close.addEventListener("click", closeHistory);
 el.overlay.addEventListener("click", e => { if (e.target === el.overlay) closeHistory(); });
