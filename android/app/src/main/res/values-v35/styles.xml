@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 15/16: edge-to-edge gestito da MainActivity tramite WindowInsets. -->
+    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:colorAccent">#ff3030</item>
+        <item name="android:navigationBarColor">#0d2b5e</item>
+        <item name="android:statusBarColor">#123f91</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@drawable/window_bg</item>
+    </style>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stesso gradiente verticale del body della PWA: #1a4ea6 -> #0d3a80 -> #061b43. Ora X 11.0 · 𝑺𝒂𝒍𝑯𝒂𝒓𝒅 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#1A4EA6"
+        android:centerColor="#0D3A80"
+        android:endColor="#061B43" />
+</shape>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="#D90F1F">
+    <TextView
+        android:id="@+id/alertTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ATTENZIONE USCITA PROGRAMMATA!"
+        android:textColor="#FFFFFFFF"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+    <TextView
+        android:id="@+id/alertText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="13sp"
+        android:maxLines="3"
+        android:ellipsize="end" />
+</LinearLayout>
